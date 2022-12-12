@@ -1,5 +1,4 @@
 package observer;
-
 import java.util.EmptyStackException;
 import java.util.Stack;
 
