@@ -1,6 +1,6 @@
 package observer;
-import org.openjdk.jol.info.GraphLayout;
 
+import org.openjdk.jol.info.GraphLayout;
 
 /**
  * Utility class for tracking the Java Virtual Machine (JVM) resources allocated
@@ -23,7 +23,7 @@ public final class JvmUtilities {
      * @return textual representation of the footprint
      */
     public static String objectFootprint(Object... roots){
-        return "Address = " +GraphLayout.parseInstance(roots).toFootprint();
+        return "Address = " + GraphLayout.parseInstance(roots).toFootprint();
     }
 
     /**
