@@ -94,7 +94,7 @@ public class GroupAdmin implements Sender {
     /**
      * Notifies all registered members of changes to the shared UndoableStringBuilder object.
      */
-    public void notifyObservers() {
+    private void notifyObservers() {
         for (Member member : members) {
             member.update(usb);
         }

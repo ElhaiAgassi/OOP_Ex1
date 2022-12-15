@@ -6,8 +6,8 @@ import java.util.Stack;
  * @author Elhai Agassi & Danielle Musai
  */
 public class UndoableStringBuilder {
-    StringBuilder the_string;
-    Stack<String> memory;
+    private StringBuilder the_string;
+    private final Stack<String> memory;
 
     public UndoableStringBuilder() {
         the_string = new StringBuilder();
