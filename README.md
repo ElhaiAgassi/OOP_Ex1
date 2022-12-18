@@ -9,7 +9,7 @@ The `observer` design pattern is a behavioral design pattern that defines a one-
 This pattern is often used in GUI applications where multiple objects need to be updated in response to changes in a shared object. It allows for loose coupling between objects, as the subject and its observers do not need to know each other's implementation details.
 
 In this project, we have implemented the observer design pattern using the following classes:
----
+
 ## Classes
 
 ### Member interface
@@ -27,6 +27,7 @@ The `ConcreteMember` class is a concrete implementation of the Member interface.
 ---
 ## Usage
 To use the GroupAdmin and ConcreteMember classes in a program, first create a GroupAdmin object and a ConcreteMember object. Then, register the ConcreteMember with the GroupAdmin using the register method. Finally, call the insert, append, delete, or undo methods on the GroupAdmin object to modify the shared UndoableStringBuilder object. The ConcreteMember object will be automatically notified of the change and will update its internal copy of the UndoableStringBuilder.
+---
 ___
 ## UML
 
