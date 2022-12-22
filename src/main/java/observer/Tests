@@ -17,6 +17,8 @@ public class Tests {
         assertEquals(2, admin.members.size());
         admin.unregister(member1);
         assertEquals(1, admin.members.size());
+        admin.unregister(member2);
+        assertEquals(0,admin.members.size());
     }
 
     @Test
@@ -24,13 +26,21 @@ public class Tests {
         // Test insert & append method
         admin.register(member2);
         admin.append("Hello  ");
+        member2.update(admin.usb);
+        assertEquals(member2.usb.toString(),admin.usb.toString());
         assertEquals("Hello  ", "Hello  ");
         admin.append("world");
         assertEquals("Hello world", "Hello world");
         admin.insert(6, "-");
-        assertEquals("Hello - world", member2.usb.toString());
+        assertEquals("Hello - world", admin.usb.toString());
+        assertEquals(admin.usb.toString(),member2.usb.toString());
         admin.undo();
-        assertEquals("Hello  world", member2.usb.toString());
+        assertEquals("Hello  world", admin.usb.toString());
+        admin.register(member1);
+        member1.update(admin.usb);
+        assertEquals(member1.usb.toString(),admin.usb.toString());
+        assertEquals(member1.usb.toString(),member2.usb.toString());
+
     }
     @Test
     public void delete(){
