@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GroupAdmin implements Sender {
-    private List<Member> members;
-    private UndoableStringBuilder usb;
+    public List<Member> members;
+    public UndoableStringBuilder usb;
 
     public GroupAdmin() {
         members = new ArrayList<>();

@@ -6,7 +6,7 @@ package observer;
  * This class represents a member who is registered to receive updates from a SharedUndoableStringBuilder object.
  */
 public class ConcreteMember implements Member {
-    private UndoableStringBuilder usb;
+    public UndoableStringBuilder usb;
 
     public ConcreteMember() {
         this.usb = new UndoableStringBuilder();
