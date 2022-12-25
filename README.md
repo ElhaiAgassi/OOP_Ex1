@@ -29,6 +29,20 @@ The `ConcreteMember` class is a concrete implementation of the Member interface.
 To use the GroupAdmin and ConcreteMember classes in a program, first create a GroupAdmin object and a ConcreteMember object. Then, register the ConcreteMember with the GroupAdmin using the register method. Finally, call the insert, append, delete, or undo methods on the GroupAdmin object to modify the shared UndoableStringBuilder object. The ConcreteMember object will be automatically notified of the change and will update its internal copy of the UndoableStringBuilder.
 
 ___
+## Part B
+
+In the second part we were asked to track the size of the object in the heap.
+We found out that one of the parameters for checking the efficiency of the code is the size of the object in the JVM memory.
+In addition, we saw that in the JvmUtilities class there are 3 static methods that we used to test the efficiency.
+- The method objectFootprint - shows all the references
+that the object contains the size of each reference (including overhead)
+-the method objectTotalSize - displays the total size of
+the object. This method is most relevant to us in this assignment.
+- The jvmInfo method – displays the process ID of the JVM
+and the total amount of memory for the benefit of the program.
+
+___
+
 ## UML
 
 <img width="440" alt="image" src="https://user-images.githubusercontent.com/92378800/208301330-5d76893a-ede2-4417-b0d6-3f906bf3ab5f.png">
