@@ -34,10 +34,13 @@ ___
 In the second part we were asked to track the size of the object in the heap.
 We found out that one of the parameters for checking the efficiency of the code is the size of the object in the JVM memory.
 In addition, we saw that in the JvmUtilities class there are 3 static methods that we used to test the efficiency.
+
 - The method objectFootprint - shows all the references
 that the object contains the size of each reference (including overhead)
+
 -the method objectTotalSize - displays the total size of
 the object. This method is most relevant to us in this assignment.
+
 - The jvmInfo method – displays the process ID of the JVM
 and the total amount of memory for the benefit of the program.
 
