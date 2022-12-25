@@ -26,6 +26,11 @@ class GroupAdminTest {
         // Check that the members were updated with the new string
         assertEquals(member1.usb.toString(), "Hello World");
         assertEquals(member2.usb.toString(), "Hello World");
+        assertEquals(2,admin.members.size());
+        admin.unregister(member1);
+        admin.unregister(member2);
+        assertEquals(0,admin.members.size());
+
     }
 
     @Test
@@ -33,12 +38,14 @@ class GroupAdminTest {
         // Register the members with the GroupAdmin
         admin.register(member1);
         admin.register(member2);
-
         // Append a string to the UndoableStringBuilder
-        admin.append(" World");
+        admin.append("Hello");
         // Check that the members were updated with the new string
-        assertEquals(member1.usb.toString(), " World");
-        assertEquals(member2.usb.toString(), " World");
+        assertEquals(member1.usb.toString(), "Hello");
+        assertEquals(member2.usb.toString(), "Hello");
+        admin.append(" World");
+        assertEquals(member1.usb.toString(), "Hello World");
+        assertEquals(member2.usb.toString(), "Hello World");
     }
 
     @Test
@@ -54,6 +61,9 @@ class GroupAdminTest {
         // Check that the members were updated with the new string
         assertEquals(member1.usb.toString(), " World");
         assertEquals(member2.usb.toString(), " World");
+        admin.delete(0, 6);
+        assertEquals(member1.usb.toString(), "");
+        assertEquals(member2.usb.toString(), "");
     }
 
     @Test
@@ -61,7 +71,6 @@ class GroupAdminTest {
         // Register the members with the GroupAdmin
         admin.register(member1);
         admin.register(member2);
-
         // Insert a string into the UndoableStringBuilder
         admin.insert(0, "Hello");
         // Undo the insert action
@@ -69,5 +78,12 @@ class GroupAdminTest {
         // Check that the members were updated with the new string
         assertEquals(member1.usb.toString(), "");
         assertEquals(member2.usb.toString(), "");
+        admin.append("to be or not to be");
+        admin.append(" or to eat or not to eat");
+        admin.undo();
+        admin.undo();
+        assertEquals(member1.usb.toString(), "");
+        assertEquals(member2.usb.toString(), "");
+
     }
 }
