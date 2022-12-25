@@ -38,8 +38,8 @@ In addition, we saw that in the JvmUtilities class there are 3 static methods th
 - The method objectFootprint - shows all the references
 that the object contains the size of each reference (including overhead)
 
-- the method objectTotalSize - displays the total size of
-the object. This method is most relevant to us in this assignment.
+- the method objectTotalSize - displays the total size of the object. 
+This method is the most relevant to us in this assignment.
 
 - The jvmInfo method – displays the process ID of the JVM
 and the total amount of memory for the benefit of the program.
