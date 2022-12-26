@@ -51,7 +51,7 @@ public class Tests {
 
         // insert a string at index 4
         admin.insert(4, "o");
-        logger.info(()->"the size after insert action :");
+        logger.info(()->"total memory after insert:");
         logger.info(()->JvmUtilities.objectTotalSize(member1));
         logger.info(()->JvmUtilities.objectTotalSize(member2));
         // check if they both have the same size after insert
@@ -59,7 +59,7 @@ public class Tests {
 
         // append a string
         admin.append(" world");
-        logger.info(()->"the size after append action :");
+        logger.info(()->"total memory after append:");
         logger.info(()->JvmUtilities.objectTotalSize(member1));
         logger.info(()->JvmUtilities.objectTotalSize(member2));
         // check if they both have the same size after append
@@ -69,21 +69,24 @@ public class Tests {
         // undo the delete action
         admin.undo();
         assertEquals("hello ",member1.usb.toString());
+        logger.info(()->"total memory after undo:");
         logger.info(()->JvmUtilities.objectTotalSize(member1));
 
        // delete a range of characters
         admin.delete(0,1);
         assertEquals("ello ", member1.usb.toString());
         assertEquals(member1.usb.toString(),member2.usb.toString());
+        logger.info(()->"total memory after delete:");
+        logger.info(()->JvmUtilities.objectTotalSize(member1));
 
         // register a member
         admin.register(member3);
-        logger.info(()->"the size after register a member :");
+        logger.info(()->"total memory after register a member:");
         logger.info(()->JvmUtilities.objectTotalSize(admin));
 
         // unregister a member
         admin.unregister(member3);
-        logger.info(()->"the size after unregister a member :");
+        logger.info(()->"total memory after unregister a member:");
         logger.info(()->JvmUtilities.objectTotalSize(admin));
 
    }
