@@ -22,10 +22,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Tests {
     public static final Logger logger = LoggerFactory.getLogger(Tests.class);
-//    // stub method to check external dependencies compatibility
+    // stub method to check external dependencies compatibility
 
     GroupAdmin admin;
-    ConcreteMember member1, member2;
+    ConcreteMember member1, member2, member3;
 
 
     @BeforeEach
@@ -34,45 +34,59 @@ public class Tests {
         admin = new GroupAdmin();
         member1 = new ConcreteMember();
         member2 = new ConcreteMember();
+        member3 = new ConcreteMember();
     }
 
     @Test
     void testGroupAdmin() {
+        // size of admin
+        logger.info(()->JvmUtilities.objectTotalSize(admin));
 
         // register the members
         admin.register(member1);
         admin.register(member2);
 
-        // insert a string at index 2
-        admin.insert(2, "hello");
-        logger.info(()->JvmUtilities.jvmInfo());
-        logger.info(()->JvmUtilities.objectTotalSize(admin,member1,member2));
-        logger.info(()->JvmUtilities.objectFootprint(admin, member1, member2));
+        // append a string
+        admin.append("hell ");
+
+        // insert a string at index 4
+        admin.insert(4, "o");
+        logger.info(()->"the size after insert action :");
+        logger.info(()->JvmUtilities.objectTotalSize(member1));
+        logger.info(()->JvmUtilities.objectTotalSize(member2));
+        // check if they both have the same size after insert
+        assertEquals(JvmUtilities.objectTotalSize(member1),JvmUtilities.objectTotalSize(member2));
 
         // append a string
-        admin.append("world");
-        logger.info(()->JvmUtilities.jvmInfo());
-        logger.info(()->JvmUtilities.objectTotalSize(admin,member1,member2));
-        logger.info(()->JvmUtilities.objectFootprint(admin, member1, member2));
+        admin.append(" world");
+        logger.info(()->"the size after append action :");
+        logger.info(()->JvmUtilities.objectTotalSize(member1));
+        logger.info(()->JvmUtilities.objectTotalSize(member2));
+        // check if they both have the same size after append
+        assertEquals(JvmUtilities.objectTotalSize(member1),JvmUtilities.objectTotalSize(member2));
 
-        // delete a range of characters
-        admin.delete(2, 5);
-        logger.info(()->JvmUtilities.jvmInfo());
-        logger.info(()->JvmUtilities.objectTotalSize(admin,member1,member2));
-        logger.info(()->JvmUtilities.objectFootprint(admin, member1, member2));
 
         // undo the delete action
         admin.undo();
-        logger.info(()->JvmUtilities.jvmInfo());
-        logger.info(()->JvmUtilities.objectTotalSize(admin,member1,member2));
-        logger.info(()->JvmUtilities.objectFootprint(admin, member1, member2));
+        assertEquals("hello ",member1.usb.toString());
+        logger.info(()->JvmUtilities.objectTotalSize(member1));
+
+       // delete a range of characters
+        admin.delete(0,1);
+        assertEquals("ello ", member1.usb.toString());
+        assertEquals(member1.usb.toString(),member2.usb.toString());
+
+        // register a member
+        admin.register(member3);
+        logger.info(()->"the size after register a member :");
+        logger.info(()->JvmUtilities.objectTotalSize(admin));
 
         // unregister a member
-        admin.unregister(member2);
-        logger.info(()->JvmUtilities.jvmInfo());
-        logger.info(()->JvmUtilities.objectTotalSize(admin,member1,member2));
-        logger.info(()->JvmUtilities.objectFootprint(admin, member1));
-    }
+        admin.unregister(member3);
+        logger.info(()->"the size after unregister a member :");
+        logger.info(()->JvmUtilities.objectTotalSize(admin));
+
+   }
     }
 
 
