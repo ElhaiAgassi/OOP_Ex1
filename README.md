@@ -44,6 +44,12 @@ This method is the most relevant to us in this assignment.
 - The jvmInfo method – displays the process ID of the JVM
 and the total amount of memory for the benefit of the program.
 
+In addition, we have attached documentation to this part:
+
+<img width="300" alt="image" src="https://user-images.githubusercontent.com/92378800/209563841-7d0175ef-8a75-40d6-a59c-be6594b943a1.png">
+
+
+
 ___
 
 ## UML
