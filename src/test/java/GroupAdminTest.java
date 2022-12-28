@@ -1,6 +1,7 @@
-package observer;
 import static org.junit.jupiter.api.Assertions.*;
 
+import observer.ConcreteMember;
+import observer.GroupAdmin;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -86,4 +87,6 @@ class GroupAdminTest {
         assertEquals(member2.usb.toString(), "");
 
     }
+
+
 }
