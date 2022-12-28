@@ -15,7 +15,7 @@ public class Main {
         admin.register(member2);
 
         admin.append("I am your father");
-        admin.delete(0,2);
+        admin.delete(0,8);
 
 
     }

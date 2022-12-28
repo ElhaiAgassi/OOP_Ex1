@@ -19,8 +19,9 @@ public class ConcreteMember implements Member {
      */
     @Override
     public void update(UndoableStringBuilder usb) {
-        this.usb = usb;
-        System.out.println(this+" got the message: "+usb.toString());
+        this.usb = usb.clone();
+        System.out.println(usb);
+        System.out.println(this+" got the message: ");
     }
 }
 

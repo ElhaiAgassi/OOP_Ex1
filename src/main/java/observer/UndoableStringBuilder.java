@@ -1,29 +1,29 @@
 package observer;
-
 import java.util.EmptyStackException;
 import java.util.Stack;
 
-public class UndoableStringBuilder {
+public class UndoableStringBuilder implements Cloneable  {
     /**
      * @author Elhai Agassi & Danielle Musai
      */
-    StringBuilder the_string;
-    Stack<String> memory;
+    private StringBuilder the_string;
+    private final Stack<String> memory;
 
     public UndoableStringBuilder() {
         the_string = new StringBuilder();
         memory = new Stack<>();
-//        memory.push("");
     }
     public UndoableStringBuilder(String str) {
         the_string = new StringBuilder();
         memory = new Stack<>();
-//        memory.push("");
         memory.push(the_string.append(str).toString());
 
     }
+
     @Override
-    public String toString(){ return this.the_string.toString();}
+    public String toString() {
+        return this.the_string.toString();
+    }
 
     /**
      * appends the specified string to this character sequence
@@ -46,6 +46,7 @@ public class UndoableStringBuilder {
      * If start is equal to end, no changes are made.
      * <p>
      * StringIndexOutOfBoundsException - if start is negative,greater than length(), or greater than end.
+     *
      * @param start - the first number
      * @param end   - the second number
      * @return what we get from those numbers
@@ -88,6 +89,7 @@ public class UndoableStringBuilder {
      * and then the specified String is inserted at start. (This sequence will be
      * lengthened to accommodate the specified String if necessary).
      * StringIndexOutOfBoundsException - if start is negative, greater than length(), or greater than end.
+     *
      * @param start - the first number
      * @param end   - the second number
      * @return - what we get from those two numbers.
@@ -121,16 +123,23 @@ public class UndoableStringBuilder {
      */
 
     public void undo() {
-        try{
+        try {
             this.memory.pop();
-            this.the_string = new StringBuilder();
+            this.the_string = (new StringBuilder());
             this.the_string.append(this.memory.peek());
-
-        }
-        catch (EmptyStackException e) {
+        } catch (EmptyStackException e) {
             System.out.println("No changes happened earlier");
-
         }
+    }
 
+    @Override
+    public UndoableStringBuilder clone() {
+        try {
+            // TODO: copy mutable state here, so the clone can't change the internals of the original
+            return (UndoableStringBuilder) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
     }
 }
+
