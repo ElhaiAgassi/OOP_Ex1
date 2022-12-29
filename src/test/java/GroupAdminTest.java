@@ -1,6 +1,7 @@
-package observer;
 import static org.junit.jupiter.api.Assertions.*;
 
+import observer.ConcreteMember;
+import observer.GroupAdmin;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -24,12 +25,17 @@ class GroupAdminTest {
         admin.append(" World");
         admin.insert(0, "Hello");
         // Check that the members were updated with the new string
-        assertEquals(member1.usb.toString(), "Hello World");
-        assertEquals(member2.usb.toString(), "Hello World");
+        assertEquals("Hello World", member1.usb.toString());
+        assertEquals("Hello World", member2.usb.toString());
+        admin.undo();
+        admin.undo();
+        admin.insert(0,"Hey");
+        assertEquals("Hey",member1.usb.toString());
         assertEquals(2,admin.members.size());
         admin.unregister(member1);
         admin.unregister(member2);
         assertEquals(0,admin.members.size());
+
 
     }
 
@@ -41,11 +47,11 @@ class GroupAdminTest {
         // Append a string to the UndoableStringBuilder
         admin.append("Hello");
         // Check that the members were updated with the new string
-        assertEquals(member1.usb.toString(), "Hello");
-        assertEquals(member2.usb.toString(), "Hello");
+        assertEquals("Hello", member1.usb.toString());
+        assertEquals("Hello", member2.usb.toString());
         admin.append(" World");
-        assertEquals(member1.usb.toString(), "Hello World");
-        assertEquals(member2.usb.toString(), "Hello World");
+        assertEquals("Hello World", member1.usb.toString());
+        assertEquals("Hello World", member2.usb.toString());
     }
 
     @Test
@@ -59,11 +65,13 @@ class GroupAdminTest {
         // Delete a range of characters from the string
         admin.delete(0, 5);
         // Check that the members were updated with the new string
-        assertEquals(member1.usb.toString(), " World");
-        assertEquals(member2.usb.toString(), " World");
+        assertEquals(" World", member1.usb.toString());
+        assertEquals(" World", member2.usb.toString());
         admin.delete(0, 6);
-        assertEquals(member1.usb.toString(), "");
-        assertEquals(member2.usb.toString(), "");
+        assertEquals("", member1.usb.toString());
+        assertEquals("", member2.usb.toString());
+        admin.delete(0,6);
+        assertEquals("", member1.usb.toString());
     }
 
     @Test
@@ -76,14 +84,16 @@ class GroupAdminTest {
         // Undo the insert action
         admin.undo();
         // Check that the members were updated with the new string
-        assertEquals(member1.usb.toString(), "");
-        assertEquals(member2.usb.toString(), "");
+        assertEquals("", member1.usb.toString());
+        assertEquals("", member2.usb.toString());
         admin.append("to be or not to be");
         admin.append(" or to eat or not to eat");
         admin.undo();
         admin.undo();
-        assertEquals(member1.usb.toString(), "");
-        assertEquals(member2.usb.toString(), "");
+        assertEquals("", member1.usb.toString());
+        assertEquals("", member2.usb.toString());
 
     }
+
+
 }
