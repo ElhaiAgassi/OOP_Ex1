@@ -96,7 +96,7 @@ public class GroupAdmin implements Sender {
      */
     private void notifyObservers() {
         for (Member member : members) {
-            member.update(this.usb);
+            member.update(usb);
         }
     }
 }

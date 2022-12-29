@@ -2,7 +2,7 @@ package observer;
 import java.util.EmptyStackException;
 import java.util.Stack;
 
-public class UndoableStringBuilder implements Cloneable  {
+public class UndoableStringBuilder {
     /**
      * @author Elhai Agassi & Danielle Musai
      */
@@ -125,20 +125,10 @@ public class UndoableStringBuilder implements Cloneable  {
     public void undo() {
         try {
             this.memory.pop();
-            this.the_string = (new StringBuilder());
+            this.the_string = new StringBuilder();
             this.the_string.append(this.memory.peek());
         } catch (EmptyStackException e) {
             System.out.println("No changes happened earlier");
-        }
-    }
-
-    @Override
-    public UndoableStringBuilder clone() {
-        try {
-            // TODO: copy mutable state here, so the clone can't change the internals of the original
-            return (UndoableStringBuilder) super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new AssertionError();
         }
     }
 }
